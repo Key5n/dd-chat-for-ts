@@ -5,12 +5,20 @@ const EnhancedMyCard: VFC = () => {
   const [isMute, setIsMute] = useState(true);
   const [isSpeakerMute, setIsSpeakerMute] = useState(true);
 
+  const onMicImageClick = (): void => {
+    setIsMute(!isMute);
+  };
+
+  const onSpeakerImageClick = (): void => {
+    setIsSpeakerMute(!isSpeakerMute);
+  };
+
   return (
     <MyCard
       isMute={isMute}
-      setIsMute={setIsMute}
+      onMicImageClick={onMicImageClick}
       isSpeakerMute={isSpeakerMute}
-      setIsSpeakerMute={setIsSpeakerMute}
+      onSpeakerImageClick={onSpeakerImageClick}
     />
   );
 };

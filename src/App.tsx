@@ -14,6 +14,7 @@ type Constraints = {
   audio: boolean;
   video: boolean;
 };
+
 export type UserInfo = {
   id: string;
 };
@@ -42,7 +43,7 @@ const App: FC = () => {
   const [userInfo, setUserInfo] = useState<UserInfo[]>([]);
   const [remoteAudio, setRemoteAudio] = useState<RemoteAudio[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const roomNameRef = useRef<HTMLElement>();
+  const roomNameRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     navigator.mediaDevices
       .getUserMedia(constraints)
@@ -67,10 +68,13 @@ const App: FC = () => {
     console.log(`Your Peer ID is [${peerRef.current.id}]`);
 
     if (!room) {
-      const currentRoom: MeshRoom = peerRef.current.joinRoom('Room Name', {
-        mode: 'mesh',
-        stream: localStream,
-      });
+      const currentRoom: MeshRoom = peerRef.current.joinRoom(
+        roomNameRef.current!.value,
+        {
+          mode: 'mesh',
+          stream: localStream,
+        }
+      );
       setUserInfo((prev) => [
         ...prev,
         { id: peerRef.current.id, name: peerRef.current.id },
@@ -110,6 +114,8 @@ const App: FC = () => {
           case 3:
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             console.log(`----${data.type as string}----`);
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            setUserInfo(data.body as UserInfo[]);
             break;
           case 4:
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
@@ -164,9 +170,10 @@ const App: FC = () => {
             <MoveRoom
               roomEnterTrigger={roomEnterTrigger}
               roomLeaveTrigger={roomLeaveTrigger}
+              ref={roomNameRef}
             />
             <MyCard />
-            <RoomInfo remoteAudio={remoteAudio} />
+            <RoomInfo remoteAudio={remoteAudio} roomNameRef={roomNameRef} />
           </PeerContext.Provider>
         </RoomContext.Provider>
       </UserInfoContext.Provider>

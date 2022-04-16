@@ -11,9 +11,10 @@ import {
 
 type Props = {
   remoteAudio: RemoteAudio[];
+  roomNameRef: React.RefObject<HTMLInputElement>;
 };
 
-const EnhancedRoomInfo: VFC<Props> = ({ remoteAudio }) => {
+const EnhancedRoomInfo: VFC<Props> = ({ remoteAudio, roomNameRef }) => {
   const room: MeshRoom | undefined = useContext(RoomContext);
   const peer: Peer | undefined = useContext(PeerContext);
   const userInfo: UserInfo[] | undefined = useContext(UserInfoContext);
@@ -38,8 +39,10 @@ const EnhancedRoomInfo: VFC<Props> = ({ remoteAudio }) => {
 
   return (
     <>
-      <h2 className="room-name">Room {room && `: default`}</h2>;
-      <ul>{userList}</ul>
+      <h2 className="room-name">
+        Room : {room ? roomNameRef.current!.value : 'null'}
+      </h2>
+      ;<ul>{userList}</ul>
     </>
   );
 };

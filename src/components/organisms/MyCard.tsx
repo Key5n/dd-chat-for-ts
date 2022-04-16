@@ -9,16 +9,16 @@ import headphoneoff from 'image/headphoneoff.png';
 
 type Props = {
   isMute: boolean;
-  setIsMute: React.Dispatch<React.SetStateAction<boolean>>;
+  onMicImageClick: () => void;
   isSpeakerMute: boolean;
-  setIsSpeakerMute: React.Dispatch<React.SetStateAction<boolean>>;
+  onSpeakerImageClick: () => void;
 };
 
 const MyCard: VFC<Props> = ({
   isMute,
-  setIsMute,
+  onMicImageClick,
   isSpeakerMute,
-  setIsSpeakerMute,
+  onSpeakerImageClick,
 }) => (
   <div className="my-card">
     <img src={icon} alt="icon" width="20%" />
@@ -29,7 +29,7 @@ const MyCard: VFC<Props> = ({
         alt="mic-icon"
         width="5%"
         style={{ marginRight: '2%' }}
-        onClick={() => setIsMute(!isMute)}
+        onClick={onMicImageClick}
       />
     ) : (
       <img
@@ -37,7 +37,7 @@ const MyCard: VFC<Props> = ({
         alt="mic-icon"
         width="5%"
         style={{ marginRight: '2%' }}
-        onClick={() => setIsMute(!isMute)}
+        onClick={onMicImageClick}
       />
     )}
     {isSpeakerMute ? (
@@ -46,7 +46,7 @@ const MyCard: VFC<Props> = ({
         alt="speaker"
         width="5%"
         style={{ marginRight: '2%' }}
-        onClick={() => setIsSpeakerMute(!isSpeakerMute)}
+        onClick={onSpeakerImageClick}
       />
     ) : (
       <img
@@ -54,7 +54,7 @@ const MyCard: VFC<Props> = ({
         alt="speaker"
         width="5%"
         style={{ marginRight: '2%' }}
-        onClick={() => setIsSpeakerMute(!isSpeakerMute)}
+        onClick={onSpeakerImageClick}
       />
     )}
   </div>
