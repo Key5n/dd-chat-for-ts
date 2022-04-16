@@ -1,38 +1,148 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header{
+  background-color: #dddddd;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.move-room{
   display: flex;
-  flex-direction: column;
+  margin: 10px;
+}
+
+.my-card{
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 30px;
+	font-size: 30px;
+}
+.room-name{
+	margin-left: 3%;
 }
 
-.App-link {
-  color: #61dafb;
+.his-card{
+  display: flex;
+  align-items: center;
+	font-size: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.my-name{
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.my-name-input{
+	font-size: 30px;
+}
+.my-name-form{
+	margin-right: 10%;
+	margin-left: 10%;
+}
+
+.his-name{
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.whole{
+  display: flex;
+	justify-content: space-between;
+}
+
+.left{
+	width: 60%;
+}
+.right{
+	width: 40%;
+}
+
+
+#box {
+	width: 99.5%;
+	height: 200px;
+	border: 1px solid #000; /* わかりやすくボーダーを引く */
+	overflow-y: scroll; /* 縦方向にスクロール可能にする */
+}
+
+/*メイン**/
+article {
+	width: 100%;
+	background-color: rgb(255, 255, 255);
+}
+
+aside {
+	width: 100%;
+}
+
+td {
+	font-size: 12px;
+	border: solid 1px rgb(0, 0, 0);
+}
+aside table {
+	border-collapse: collapse;
+}
+
+.news-contents {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 50px;
+}
+
+.cp_actab {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	margin: 0 auto;
+	color: #ffffff;
+}
+.cp_actab input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+.cp_actab label {
+	font-weight: bold;
+	line-height: 3;
+	position: relative;
+	display: block;
+	padding: 0 0 0 1em;
+	cursor: pointer;
+	margin: 0 0 1px 0;
+	background: hsl(123, 37%, 49%);
+}
+.cp_actab .cp_actab-content {
+	overflow: auto;
+	max-height: 0px;
+	-webkit-transition: max-height 0.35s;
+	transition: max-height 0.35s;
+	color: #000000;
+	background: #f7f5af;
+}
+.cp_actab .cp_actab-content p {
+	margin: 0.1em;
+}
+/* :checked */
+.cp_actab input:checked ~ .cp_actab-content {
+	max-height: 20em;
+}
+/* Icon */
+.cp_actab label::after {
+	line-height: 3;
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: block;
+	width: 3em;
+	height: 3em;
+	-webkit-transition: all 0.35s;
+	transition: all 0.35s;
+	text-align: center;
+}
+.cp_actab input[type="checkbox"] + label::after {
+	content: "+";
+}
+.cp_actab input[type="checkbox"]:checked + label::after {
+	transform: rotate(315deg);
 }

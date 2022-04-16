@@ -90,6 +90,7 @@ module.exports = {
         namedComponents: 'arrow-function',
       },
     ],
+    'no-console': 'off',
   },
   overrides: [
     {
